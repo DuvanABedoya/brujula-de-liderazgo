@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Brújula de Liderazgo</title>
+<style>
+:root{--bg:#f4f7fa;--fg:#0f172a;--mu:#5b6b80;--cd:#fff;--bd:#e2e8f0;--ac:#1b3b5a;--ab:#e7f3f1;--on:#fff;--lo:#b3322a;--me:#8f6200;--hi:#1f7a46;--tl:#2a9d8f;--st:#3a7ca5;--go:#e9c46a;--nv:#17324d;--nv2:#234669;--fr:#2a9d8f;--tr:#e2e8f0;--sh:0 1px 2px rgba(15,23,42,.04),0 10px 28px -16px rgba(15,23,42,.22);--chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%232a9d8f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");color-scheme:light;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1520;--fg:#e6edf5;--mu:#94a8bd;--cd:#12253a;--bd:#22405d;--ac:#62c6b9;--ab:#123b40;--on:#0a1520;--lo:#ff8f85;--me:#e8b44f;--hi:#6fd09a;--nv:#0d2135;--nv2:#1b3a58;--fr:#62c6b9;--tr:#22405d;--sh:0 1px 2px rgba(0,0,0,.35),0 14px 34px -16px rgba(0,0,0,.7);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1520;--fg:#e6edf5;--mu:#94a8bd;--cd:#12253a;--bd:#22405d;--ac:#62c6b9;--ab:#123b40;--on:#0a1520;--lo:#ff8f85;--me:#e8b44f;--hi:#6fd09a;--nv:#0d2135;--nv2:#1b3a58;--fr:#62c6b9;--tr:#22405d;--sh:0 1px 2px rgba(0,0,0,.35),0 14px 34px -16px rgba(0,0,0,.7);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:.3em 0 .4em}
+h1{font-size:2.1rem}h2{font-size:1.35rem;margin-top:1.6em}h3{font-size:1.05rem}
+h2{display:flex;align-items:center;gap:10px}
+h2::before{content:"";flex:0 0 auto;width:20px;height:4px;border-radius:9px;background:linear-gradient(90deg,var(--tl),var(--go))}
+p{margin:.5em 0}.mu{color:var(--mu);font-size:.9rem}.ld{font-size:1.1rem}
+
+/* Estructura: barra lateral + contenido */
+.shell{display:flex;min-height:100vh}
+.sb{flex:0 0 250px;position:sticky;top:0;height:100vh;overflow:hidden;padding:calc(24px + env(safe-area-inset-top,0px)) 16px 24px;display:flex;flex-direction:column;gap:30px;color:#fff;background:linear-gradient(180deg,var(--nv),color-mix(in srgb,var(--nv) 80%,#000))}
+.sb::after{content:"";position:absolute;width:320px;height:320px;left:-90px;bottom:-130px;border-radius:50%;pointer-events:none;background:repeating-radial-gradient(circle,transparent 0 20px,rgba(42,157,143,.16) 20px 21px);-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%)}
+.sbh{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.15rem;line-height:1.15;letter-spacing:-.01em;padding:0 6px}
+.sbh svg{flex:0 0 46px;width:46px;height:46px}
+.nav{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;position:relative;z-index:1}
+.nav li{display:flex;align-items:center;gap:12px;padding:10px 12px;margin:0;border-radius:12px;color:#94a3b8;font-weight:600;font-size:.93rem;transition:background .3s,color .3s}
+.nav .n{flex:0 0 28px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1.5px solid currentColor;font-size:.78rem;font-weight:800;transition:all .3s}
+.nav .n svg{width:15px;height:15px}
+.nav li.ok{color:#cbd5e1}.nav li.ok .n{border-color:var(--tl);background:rgba(42,157,143,.22);color:#7fd6cb}
+.nav li.on{background:var(--nv2);color:#fff}.nav li.on .n{border-color:var(--tl);background:var(--tl);color:#fff;box-shadow:0 0 0 4px rgba(42,157,143,.22)}
+.mn{flex:1;min-width:0}
+.w{--px:32px;max-width:780px;margin:0 auto;padding:30px var(--px) 60px}
+.w.wide{max-width:1200px}
+
+/* Portada */
+.hero{position:relative;overflow:hidden;margin:0 0 6px;padding:28px 26px 22px;border-radius:24px;color:#fff;background:radial-gradient(130% 150% at 100% 0%,var(--nv2),var(--nv) 62%);box-shadow:0 24px 44px -26px rgba(23,50,77,.75)}
+.hero::after{content:"";position:absolute;width:380px;height:380px;right:-140px;top:-150px;border-radius:50%;pointer-events:none;background:repeating-radial-gradient(circle,transparent 0 22px,rgba(42,157,143,.22) 22px 23px);-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.hd{display:flex;align-items:center;gap:16px}.hd svg{flex:0 0 74px;width:74px;height:74px;filter:drop-shadow(0 6px 16px rgba(233,196,106,.35))}
+.hd h1{margin:.1em 0 .15em}.hero .mu{color:#b6c6d8;margin:0}
+.hero .ld{color:#e8eef5;margin:18px 0 2px;padding-top:16px;border-top:1px solid rgba(255,255,255,.13)}
+.nd{transform-box:view-box;transform-origin:40px 40px;animation:sw 2.2s cubic-bezier(.25,1.5,.45,1) .15s both}
+.rg{transform-box:view-box;transform-origin:40px 40px;animation:sp 1.4s ease-out both}
+@keyframes sw{0%{transform:rotate(-150deg)}55%{transform:rotate(22deg)}75%{transform:rotate(-8deg)}90%{transform:rotate(3deg)}100%{transform:rotate(0)}}
+@keyframes sp{from{transform:rotate(-90deg) scale(.85);opacity:0}to{transform:none;opacity:1}}
+
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.gr div{border:1px solid var(--bd);border-radius:16px;padding:14px;background:var(--cd);font-size:.9rem;box-shadow:var(--sh);transition:transform .2s,border-color .2s}
+.gr div:hover{transform:translateY(-2px);border-color:var(--tl)}
+.gr b{font-size:1rem}
+.gi{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;margin-bottom:10px;background:var(--ab);color:var(--tl)}
+.gi svg{width:22px;height:22px}
+ol{padding-left:1.3em;margin:.4em 0}ol li{margin:.4em 0}
+.steps{list-style:none;padding:0;counter-reset:s;margin:.6em 0}
+.steps li{position:relative;counter-increment:s;padding:6px 0 14px 48px;margin:0}
+.steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;background:linear-gradient(145deg,var(--nv2),var(--tl));box-shadow:0 6px 14px -6px rgba(42,157,143,.6)}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:15px;top:38px;bottom:0;width:2px;border-radius:2px;background:linear-gradient(var(--tl),transparent)}
+.rf{list-style:none;padding:0}.rf li{padding-left:1.5em;text-indent:-1.5em;font-size:.85rem;word-break:break-word}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0;box-shadow:var(--sh)}
+.cd h3{margin-top:.1em}
+.note{border-left:4px solid var(--tl);background:linear-gradient(120deg,var(--ab),var(--cd) 70%)}
+.note ul{list-style:none;padding:0}.note li{position:relative;padding-left:24px}
+.note li::before{content:"";position:absolute;left:2px;top:.5em;width:9px;height:9px;border-radius:50%;border:2px solid var(--tl)}
+
+/* Botones */
+.bt{font:inherit;font-weight:700;border:2px solid var(--ac);border-radius:999px;padding:10px 22px;background:var(--ac);color:var(--on);cursor:pointer;transition:transform .15s,box-shadow .2s,filter .2s;box-shadow:0 10px 22px -12px rgba(27,59,90,.7)}
+.bt:hover{transform:translateY(-1px);filter:brightness(1.12)}
+.bt:active{transform:translateY(1px)}
+.bt.g{background:transparent;color:var(--ac);box-shadow:none}
+.bt.g:hover{background:var(--ab);filter:none}
+.bt.lg{padding:14px 34px;font-size:1.05rem;display:inline-flex;align-items:center;gap:12px}
+.bt.lg::after{content:"";width:8px;height:8px;border:solid var(--go);border-width:2.5px 2.5px 0 0;transform:rotate(45deg);transition:transform .2s}
+.bt.lg:hover::after{transform:translateX(3px) rotate(45deg)}
+.bt:focus-visible,.md:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--fr);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.cta{margin-top:26px}
+.nav2{justify-content:space-between;align-items:center;margin-top:6px}
+.nav2 .bt:last-child{margin-left:auto}
+
+/* Modo y contexto */
+.md{position:relative;flex:1 1 240px;text-align:left;font:inherit;color:var(--fg);background:var(--cd);border:2px solid var(--bd);border-radius:18px;padding:16px 46px 16px 16px;cursor:pointer;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--sh);transition:border-color .2s,transform .15s,background .2s}
+.md:hover{border-color:var(--tl);transform:translateY(-1px)}
+.md .ic{flex:0 0 44px;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--ab);color:var(--tl);transition:background .2s,color .2s}
+.md .ic svg{width:24px;height:24px}
+.md>span:last-child{display:block}
+.md::after{content:"";position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;border:2px solid var(--bd);transition:all .2s}
+.md.on{border-color:var(--tl);background:var(--ab)}
+.md.on .ic{background:var(--tl);color:#fff}
+.md.on::after{border-color:var(--tl);background:var(--tl) radial-gradient(circle,#fff 0 3px,transparent 4px)}
+.ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:4px 14px}
+label.f{display:block;font-weight:600;margin-top:8px}
+select{font:inherit;padding:11px 40px 11px 14px;border-radius:999px;border:1px solid var(--bd);background:var(--cd) var(--chev) no-repeat right 16px center/12px 8px;color:var(--fg);width:100%;margin:4px 0 8px;-webkit-appearance:none;appearance:none;cursor:pointer;transition:border-color .2s}
+select:hover{border-color:var(--tl)}
+
+/* Cuestionario */
+.qh{position:sticky;top:0;z-index:5;margin:-30px calc(-1*var(--px)) 10px;padding:calc(14px + env(safe-area-inset-top,0px)) var(--px) 12px;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+.qh .mu{margin:0 0 6px;font-weight:600}
+.pg{height:6px;background:var(--tr);border-radius:9px;overflow:hidden;margin:6px 0 4px}
+.pg i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--tl),var(--st));animation:pg .7s cubic-bezier(.3,.8,.3,1) both}
+@keyframes pg{from{width:var(--f)}}
+.legend{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--cd);border:1px solid var(--bd)}
+fieldset{border:1px solid var(--bd);border-radius:18px;padding:16px;margin:0 0 14px;min-width:0;background:var(--cd);box-shadow:var(--sh);transition:border-color .25s}
+fieldset:has(input:checked){border-color:color-mix(in srgb,var(--tl) 55%,var(--bd))}
+legend{float:left;width:100%;font-weight:600;margin-bottom:12px;padding:0;font-size:1.02rem}
+legend+*{clear:both}
+.sc{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.o{position:relative}.o input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer;z-index:1}
+.o span{display:block;text-align:center;padding:12px 0;border:1px solid var(--bd);border-radius:12px;background:var(--cd);font-weight:700;font-size:1.05rem;transition:transform .15s,background .2s,border-color .2s,box-shadow .2s}
+.o:hover span{border-color:var(--tl);background:var(--ab)}
+.o input:checked+span{background:var(--ac);color:var(--on);border-color:var(--ac);box-shadow:inset 0 -3px 0 var(--tl),0 8px 18px -8px rgba(27,59,90,.6);transform:translateY(-2px)}
+.o input:focus-visible+span{outline:3px solid var(--fr);outline-offset:2px}
+.er{color:var(--lo);font-weight:700}
+.er:not(:empty){padding:10px 14px;border-radius:12px;border:1px solid color-mix(in srgb,var(--lo) 40%,transparent);background:color-mix(in srgb,var(--lo) 9%,transparent);animation:sh .4s}
+@keyframes sh{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+
+/* Resultados tipo tablero */
+.dash{display:grid;grid-template-columns:minmax(0,1fr);gap:0 22px}
+.rhero{background:var(--cd);border:1px solid var(--bd);border-radius:24px;padding:22px;box-shadow:var(--sh);margin:0 0 14px}
+.rhero h1{margin:.05em 0 .15em}
+.side>.cd:first-child{margin-top:0}
+.rd{display:block;width:100%;max-width:600px;height:auto;margin:8px auto 0;overflow:visible}
+.rd .tk2{stroke:rgba(255,255,255,.28);stroke-width:1.5}.rd .tk3{stroke:#e9c46a;stroke-width:2.5}
+.rd .th{fill:none;stroke:rgba(255,255,255,.28);stroke-width:1.2;stroke-dasharray:4 5}
+.rd .ax{stroke:rgba(255,255,255,.14);stroke-width:1.2}
+.rd .st{opacity:.5}
+.rd .pl{fill:rgba(98,198,185,.33);stroke:#7fe3d6;stroke-width:3;stroke-linejoin:round;transform-box:view-box;transform-origin:280px 240px;animation:gr2 1s cubic-bezier(.3,1.3,.5,1) .25s both}
+.rd .pt{stroke:#fff;stroke-width:3;transform-box:fill-box;transform-origin:center;animation:pop .4s ease-out 1.05s both}
+.rd circle.lo{fill:#ff8f85}.rd circle.me{fill:#e8b44f}.rd circle.hi{fill:#6fd09a}
+.rd .nd2{transform-box:view-box;transform-origin:280px 240px;transform:rotate(var(--rot));animation:nd2 2.2s cubic-bezier(.25,1.4,.45,1) .4s both}
+@keyframes nd2{0%{transform:rotate(calc(var(--rot) - 220deg))}60%{transform:rotate(calc(var(--rot) + 14deg))}82%{transform:rotate(calc(var(--rot) - 5deg))}100%{transform:rotate(var(--rot))}}
+.rd .lb{fill:var(--fg);font-size:18px;font-weight:800;font-family:inherit}
+.rd .lv{font-size:16px;font-weight:700}
+.rd tspan.lo{fill:var(--lo)}.rd tspan.me{fill:var(--me)}.rd tspan.hi{fill:var(--hi)}
+@keyframes gr2{from{transform:scale(0);opacity:0}}
+@keyframes pop{from{transform:scale(0)}}
+.br{display:flex;align-items:center;gap:10px;margin:14px 0}.br b{flex:0 0 150px;font-size:.95rem}
+.tk{flex:1;height:14px;background:var(--tr);border-radius:9px;overflow:hidden}.tk i{display:block;height:100%;border-radius:9px;animation:gw 1.1s cubic-bezier(.3,.8,.3,1) .3s both}
+@keyframes gw{from{width:0}}
+.tg{font-weight:700;font-size:.85rem;min-width:84px;text-align:center;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,currentColor 12%,transparent)}
+.lo{color:var(--lo)}.me{color:var(--me)}.hi{color:var(--hi)}
+i.lo{background:var(--lo)}i.me{background:var(--me)}i.hi{background:var(--hi)}
+.alert{border-left:4px solid var(--lo);background:linear-gradient(120deg,color-mix(in srgb,var(--lo) 9%,var(--cd)),var(--cd) 70%)}
+.alert h3{color:var(--lo)}
+.scen{position:relative;overflow:hidden;color:#fff;border:0;background:radial-gradient(130% 150% at 100% 0%,var(--nv2),var(--nv) 65%);box-shadow:0 22px 40px -26px rgba(23,50,77,.8)}
+.scen h3{font-size:1.35rem;color:#e9c46a;padding-right:56px;min-height:40px;display:flex;align-items:center}
+.scen p{color:#e2e8f0}.scen .mu{color:#b6c6d8}
+.scen::before{content:"";position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:3px solid #2a9d8f;background:conic-gradient(from 0deg,transparent 0 70%,rgba(233,196,106,.9) 70% 75%,transparent 75%)}
+.scen::after{content:"";position:absolute;right:-70px;bottom:-80px;width:200px;height:200px;border-radius:50%;pointer-events:none;background:repeating-radial-gradient(circle,transparent 0 14px,rgba(42,157,143,.2) 14px 15px)}
+.scen>*{position:relative;z-index:1}
+.cons{list-style:none;padding:0}
+.cons li{position:relative;padding:12px 14px 12px 38px;margin:8px 0;border-radius:14px;background:var(--cd);border:1px solid var(--bd);box-shadow:var(--sh)}
+.cons li::before{content:"";position:absolute;left:15px;top:1.15em;width:8px;height:8px;border-radius:50%;background:var(--go);box-shadow:0 0 0 4px color-mix(in srgb,var(--go) 25%,transparent)}
+.plan{border-top:4px solid var(--tl)}
+.plan ul{list-style:none;padding:0}
+.plan li{position:relative;padding:4px 0 4px 38px;margin:10px 0}
+.plan li::before{content:"";position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;background:var(--ab)}
+.plan li::after{content:"";position:absolute;left:8px;top:10px;width:7px;height:7px;border:solid var(--tl);border-width:2.5px 2.5px 0 0;transform:rotate(45deg)}
+.plan p:last-child{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--ab)}
+.lim ul{padding-left:1.1em}
+ul{padding-left:1.2em;margin:.4em 0}li{margin:.35em 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{border-bottom:1px solid var(--bd);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--mu);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.ov{overflow-x:auto}
+details{margin:12px 0;background:var(--cd);border:1px solid var(--bd);border-radius:16px;box-shadow:var(--sh);overflow:hidden}
+details>*:not(summary){margin-left:18px;margin-right:18px}
+details>:last-child{margin-bottom:18px}
+summary{cursor:pointer;font-weight:700;list-style:none;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:background .2s}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:0 0 auto;width:8px;height:8px;border:solid var(--tl);border-width:0 2.5px 2.5px 0;transform:rotate(45deg);margin-top:-4px;transition:transform .25s}
+details[open]>summary::after{transform:rotate(225deg);margin-top:4px}
+summary:hover{background:var(--ab)}
+details[open]>summary{border-bottom:1px solid var(--bd);margin-bottom:12px}
+textarea{width:100%;min-height:140px;font:inherit;font-size:.85rem;background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:12px;padding:10px;margin-top:8px;resize:vertical}
+
+.fx>*{animation:up .55s cubic-bezier(.2,.7,.2,1) both}
+.fx>:nth-child(2){animation-delay:.06s}.fx>:nth-child(3){animation-delay:.12s}.fx>:nth-child(4){animation-delay:.18s}.fx>:nth-child(5){animation-delay:.24s}.fx>:nth-child(n+6){animation-delay:.3s}
+.fx>.qh{animation:none}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+
+@media(min-width:1180px){.dash{grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);align-items:start}.rhero{position:sticky;top:20px}.side .br b{flex-basis:118px;font-size:.9rem}.side h2:first-of-type{margin-top:1.1em}}
+@media(max-width:959px){
+.shell{display:block}
+.sb{position:relative;height:auto;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px}
+.sb::after{display:none}
+.sbh{font-size:1rem;padding:0;gap:9px}.sbh svg{flex-basis:34px;width:34px;height:34px}
+.nav{flex-direction:row;gap:5px}.nav li{padding:0;background:none!important}.nav .t{display:none}
+.nav .n{flex-basis:24px;width:24px;height:24px;font-size:.7rem}.nav .n svg{width:12px;height:12px}
+.w{--px:16px;padding-top:20px}.qh{margin-top:-20px}
+}
+@media(max-width:600px){.rd .lb{font-size:22px}.rd .lv{font-size:20px}.rhero{padding:18px 16px}}
+@media(max-width:480px){.br b{flex-basis:105px;font-size:.85rem}.tg{min-width:70px;padding:2px 6px}h1{font-size:1.8rem}.hero{padding:22px 18px 18px}.cta .bt{flex:1 1 auto;justify-content:center}.md{padding:14px 42px 14px 14px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head>
+<body><div class="shell"><aside class="sb" aria-hidden="true"><div class="sbh" id="sbh"></div><ol class="nav" id="nav"></ol></aside><main class="mn"><div class="w" id="app"></div></main></div>
+<script>
+const N=["Liderazgo","Bienestar psicológico","Clima laboral","Desempeño laboral"];
+const Q=[
+[["Mi jefe/a inmediato/a comunica con claridad los objetivos y la dirección del equipo.","Mi líder reconoce y valora mi trabajo.","Puedo acudir a mi líder cuando tengo un problema y recibo apoyo.","Mi líder toma decisiones de forma justa y coherente.","Mi líder fomenta mi desarrollo profesional y mi autonomía."],
+["Comunico con claridad los objetivos y la dirección del equipo.","Reconozco y valoro el trabajo de las personas de mi equipo.","Mi equipo puede acudir a mí cuando tiene un problema y recibe mi apoyo.","Tomo decisiones de forma justa y coherente.","Fomento el desarrollo profesional y la autonomía de mi equipo."]],
+["Me siento satisfecho/a con mi vida laboral actual.","Mi trabajo tiene sentido y propósito para mí.","Puedo manejar las exigencias de mi puesto sin sentirme desbordado/a.","Puedo ser yo mismo/a en mi lugar de trabajo.","Con frecuencia me siento emocionalmente agotado/a por mi trabajo."],
+["Existe buena comunicación entre los miembros de mi equipo.","Hay un ambiente de respeto y confianza entre compañeros.","Las normas y procedimientos son claros y se aplican de forma equitativa.","Me siento parte del equipo y de la organización.","Los conflictos se gestionan de manera constructiva."],
+["Cumplo mis objetivos y plazos de forma consistente.","La calidad de mi trabajo cumple o supera lo que se espera de mí.","Me siento motivado/a para ir más allá de mis tareas básicas.","Rara vez me ausento o llego tarde sin causa justificada.","Aporto ideas para mejorar los procesos de mi área."]];
+const SC=[
+["Perfil saludable","Las cuatro variables están en nivel alto. Conviene mantener las prácticas actuales, compartirlas con otros equipos y vigilar que el buen resultado se sostenga en el tiempo.","Lindert et al. (2023); Pletzer y Breevaart (2024)"],
+["Liderazgo alto con clima bajo","El liderazgo parece sólido, pero el clima está deteriorado. Parte de la influencia del liderazgo se transmite a través del clima, así que su efecto sobre el desempeño podría debilitarse. Conviene priorizar el clima.","Hidayati et al. (2022); Obeng et al. (2021)"],
+["Liderazgo bajo con bienestar bajo","Hay riesgo de agotamiento y de absentismo o presentismo. Conviene revisar el apoyo, la claridad de rol y el trato dentro del equipo.","Li et al. (2024); Montano et al. (2023); Stengård et al. (2021); Mathieu y Gilbreath (2025)"],
+["Bienestar bajo con desempeño alto","El rendimiento podría ser difícil de sostener en el tiempo. La literatura no ofrece una explicación única de la relación entre bienestar y desempeño, por lo que conviene interpretarla con cautela.","Gutiérrez et al. (2020)"],
+["Bienestar alto con desempeño bajo","El bienestar no garantiza por sí solo el rendimiento. Conviene revisar la claridad de las metas, los recursos disponibles y el apoyo recibido.","Gutiérrez et al. (2020)"],
+["Patrón de alerta","Las cuatro variables están en nivel bajo. Conviene revisar posibles conductas de liderazgo destructivo y considerar el apoyo de un profesional.","Einarsen et al. (2007); Tepper (2000); Li et al. (2024)"],
+["Perfil mixto","Tus resultados no encajan en un patrón único. Toma la variable con menor puntuación como área prioritaria y revisa el plan de mejora.","Tummers y Bakker (2021)"]];
+const P={
+c:[["Anota ejemplos concretos de conductas de tu líder, positivas y negativas, para hablar de hechos.","Pide una conversación de feedback sobre tus objetivos y el apoyo que necesitas.","Si hay trato hostil o presión sostenida, consúltalo con RR. HH. o con un canal de confianza."],
+["Identifica qué demandas de tu puesto te desbordan y plantéalas con propuestas concretas.","Protege pausas y límites de la jornada para recuperar energía.","Si el agotamiento persiste, busca apoyo profesional."],
+["Propón un espacio breve y periódico de comunicación en el equipo.","Reconoce el trabajo de tus compañeros de forma explícita.","Plantea con calma las dudas sobre las normas y pide que se aclaren."],
+["Aclara por escrito con tu líder los objetivos y las prioridades.","Pide los recursos o la formación que te faltan.","Elige una mejora de proceso y propónla al equipo."]],
+l:[["Explica los objetivos del equipo y comprueba que todas las personas los entienden.","Dedica tiempo regular a reconocer logros y a dar feedback individual.","Pide a tu equipo, de forma anónima, opiniones sobre tu forma de dirigir."],
+["Revisa las cargas de trabajo y ajusta los plazos que sean inalcanzables.","Pregunta cómo se siente cada persona y escucha sin juzgar.","Facilita pausas, flexibilidad y acceso a apoyo psicológico."],
+["Fomenta que cualquiera pueda opinar o admitir errores sin temor a represalias.","Aplica las normas de forma equitativa.","Gestiona los conflictos pronto y con diálogo."],
+["Define metas claras y medibles con cada persona.","Asegura los recursos y la formación necesarios.","Reconoce la iniciativa y las propuestas de mejora."]]};
+const RF=["¿Qué conducta concreta del liderazgo te ayuda más y cuál te perjudica?","¿Qué parte de tu trabajo te da sentido y cuál te agota?","¿Qué podría cambiar esta semana para mejorar el ambiente del equipo?","¿Qué obstáculos te impiden rendir como te gustaría?"];
+const LN=["Bajo","Medio","Alto"],LK=["lo","me","hi"];
+const MO=["Presencial","Híbrida","Remota"],SE=["Servicios","Salud","Educación","Industria","Comercio","Administración pública","Otro"];
+let S;const reset=()=>S={step:0,m:"c",mo:"",se:"",r:Array(20).fill(0)};reset();
+const $=s=>document.querySelector(s);
+const sc=b=>{let t=0;for(let i=b*5;i<b*5+5;i++)t+=i==9?6-S.r[i]:S.r[i];return t};
+const lv=n=>n>=19?2:n>=12?1:0;
+const scen=l=>l.every(x=>x==0)?5:l.every(x=>x==2)?0:l[0]==2&&l[2]==0?1:l[0]==0&&l[1]==0?2:l[1]==0&&l[3]==2?3:l[1]==2&&l[3]==0?4:6;
+const opt=(a,c)=>'<option value="">Prefiero no indicar</option>'+a.map(x=>`<option${x==c?" selected":""}>${x}</option>`).join("");
+const logo='<svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="lgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4d58d"/><stop offset="1" stop-color="#c9a13b"/></linearGradient></defs><circle cx="40" cy="40" r="36" fill="#17324d" stroke="url(#lgG)" stroke-width="3"/><circle class="rg" cx="40" cy="40" r="28" fill="none" stroke="#2a9d8f" stroke-width="2" stroke-dasharray="4 3"/><path d="M40 8v8M40 64v8M8 40h8M64 40h8" stroke="#e9c46a" stroke-width="3" stroke-linecap="round"/><g class="nd"><path d="M40 14 48 40H32Z" fill="url(#lgG)"/><path d="M40 66 48 40H32Z" fill="#2a9d8f"/></g><circle cx="40" cy="40" r="4" fill="#fff"/></svg>';
+function intro(){return `<header class="hero"><div class="hd">${logo}<div><h1>Brújula de Liderazgo</h1><p class="mu">Autodiagnóstico de liderazgo, bienestar psicológico, clima laboral y desempeño</p></div></div>
+<p class="ld">Una herramienta breve para que líderes y colaboradores reflexionen sobre cómo se relaciona el liderazgo con el bienestar, el clima y el desempeño en su trabajo.</p></header>
+<h2>¿Para qué sirve?</h2><p>La investigación reciente indica que el liderazgo de los mandos directos influye en el bienestar psicológico, el clima laboral y el desempeño: los estilos constructivos se asocian con más engagement y menos burnout, y los destructivos con efectos negativos duraderos (Li et al., 2024; Pletzer y Breevaart, 2024). Sin embargo, ese conocimiento no siempre llega en un formato práctico a quienes dirigen y a quienes son dirigidos. Esta herramienta busca acercarlo: te ayuda a identificar qué conductas de liderazgo pueden estar influyendo en tu entorno, qué significa tu resultado según la literatura y por dónde empezar a mejorar.</p>
+<h2>¿Qué evalúa?</h2><div class="gr"><div><span class="gi" aria-hidden="true">${GI[0]}</span><b>Liderazgo</b><br>Comunicación, reconocimiento, apoyo, justicia y desarrollo.</div><div><span class="gi" aria-hidden="true">${GI[1]}</span><b>Bienestar psicológico</b><br>Satisfacción, sentido, manejo de las exigencias y agotamiento.</div><div><span class="gi" aria-hidden="true">${GI[2]}</span><b>Clima laboral</b><br>Comunicación, confianza, equidad de las normas, pertenencia y conflictos.</div><div><span class="gi" aria-hidden="true">${GI[3]}</span><b>Desempeño laboral</b><br>Objetivos, calidad, iniciativa, asistencia y mejora de procesos.</div></div>
+<h2>¿Cómo funciona?</h2><ol class="steps"><li>Eliges si respondes como colaborador/a o como líder.</li><li>Respondes 20 afirmaciones en una escala de 1 a 5 (unos 5 minutos).</li><li>Ves tu puntuación y tu nivel en cada variable.</li><li>Recibes un escenario interpretativo basado en la literatura, sus posibles consecuencias organizacionales y un plan de mejora.</li></ol>
+<div class="cd note"><h3>Antes de empezar</h3><ul><li>Es una herramienta de reflexión y aprendizaje, no un diagnóstico.</li><li>Forma parte de un trabajo académico (un Trabajo Fin de Máster) y no está validada psicométricamente.</li><li>Tus respuestas se procesan en tu dispositivo y no se envían ni se guardan en ningún sitio.</li><li>Al final encontrarás las limitaciones completas, un glosario y las referencias.</li></ul></div>
+<h2>Elige cómo vas a usarla</h2><div class="row">
+<button class="md${S.m=="c"?" on":""}" data-a="m" data-v="c" aria-pressed="${S.m=="c"}"><span class="ic" aria-hidden="true">${IC[0]}</span><span><b>Colaborador/a</b><br><span class="mu">Valoro a mi líder y mi entorno de trabajo.</span></span></button>
+<button class="md${S.m=="l"?" on":""}" data-a="m" data-v="l" aria-pressed="${S.m=="l"}"><span class="ic" aria-hidden="true">${IC[1]}</span><span><b>Líder</b><br><span class="mu">Me autoevalúo como líder y valoro a mi equipo.</span></span></button></div>
+<h2>Contexto (opcional)</h2>
+<div class="ctx"><div><label class="f" for="mo">Modalidad de trabajo</label><select id="mo">${opt(MO,S.mo)}</select></div>
+<div><label class="f" for="se">Sector</label><select id="se">${opt(SE,S.se)}</select></div></div>
+<div class="row cta"><button class="bt lg" data-a="go">Comenzar</button></div>`}
+function blk(b){const it=b?Q[b]:Q[0][S.m=="l"?1:0];
+return `<div class="qh"><p class="mu">Bloque ${b+1} de 4: ${N[b]}</p><div class="pg"><i style="width:${(b+1)*25}%;--f:${b*25}%"></i></div></div>
+<p class="mu legend">1 = Totalmente en desacuerdo, 3 = Ni de acuerdo ni en desacuerdo, 5 = Totalmente de acuerdo</p><h2>${N[b]}</h2>`
++it.map((t,i)=>{const n=b*5+i;return `<fieldset><legend>${n+1}. ${t}</legend><div class="sc">`+[1,2,3,4,5].map(v=>`<label class="o"><input type="radio" name="q${n}" value="${v}"${S.r[n]==v?" checked":""}><span>${v}</span></label>`).join("")+`</div></fieldset>`}).join("")
++`<p class="er" id="er" role="alert"></p><div class="row nav2">${b?'<button class="bt g" data-a="bk">Atrás</button>':""}<button class="bt" data-a="nx">${b==3?"Ver resultados":"Siguiente"}</button></div>`}
+function res(){const s=[0,1,2,3].map(sc),l=s.map(lv),e=SC[scen(l)],p=s.indexOf(Math.min(...s)),pl=P[S.m][p];
+const al=[];if(S.r[9]>=4)al.push("Indicas agotamiento emocional frecuente (ítem 10).");if(S.r[18]<=2)al.push("Indicas ausencias o retrasos sin causa justificada (ítem 19).");
+const c=[];if(l[0]==0||l[1]==0)c.push("Con liderazgo o bienestar bajos, la literatura asocia mayor riesgo de bajas por enfermedad (Stengård et al., 2021), de presentismo, sobre todo con liderazgo laissez-faire (Mathieu y Gilbreath, 2025), y de intención de rotación (Samad et al., 2022).");
+if(l[2]==0)c.push("Un clima bajo puede debilitar el efecto del liderazgo sobre el desempeño (Hidayati et al., 2022).");
+if(l[3]==0)c.push("Un desempeño bajo puede reflejar menor engagement y más burnout (Pletzer y Breevaart, 2024).");
+if(!c.length)c.push("Con los niveles obtenidos no se observan señales de riesgo marcadas.");
+const sum=`Brújula de Liderazgo (modo ${S.m=="l"?"líder":"colaborador/a"})${S.mo?"\nModalidad: "+S.mo:""}${S.se?"\nSector: "+S.se:""}\n`+s.map((n,i)=>`${N[i]}: ${n}/25 (${LN[l[i]]})`).join("\n")+`\nEscenario: ${e[0]}\nÁrea prioritaria: ${N[p]}\nAcciones:\n- ${pl.join("\n- ")}`;
+return `<div class="dash"><section class="rhero"><h1>Tus resultados</h1><p class="mu">Modo ${S.m=="l"?"líder":"colaborador/a"}. Cada variable puntúa de 5 a 25.</p>${radar(s,l,p)}</section><div class="side">
+<div class="cd bars">`+s.map((n,i)=>`<div class="br"><b>${N[i]}</b><div class="tk"><i class="${LK[l[i]]}" style="width:${n*4}%"></i></div><span class="tg ${LK[l[i]]}">${n}: ${LN[l[i]]}</span></div>`).join("")+`<p class="mu">Niveles orientativos: bajo 5 a 11, medio 12 a 18, alto 19 a 25.</p></div>`
++(al.length?`<div class="cd alert"><h3>Alertas</h3><ul>${al.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:"")
++`<h2>Escenario interpretativo</h2><div class="cd scen"><h3>${e[0]}</h3><p>${e[1]}</p><p class="mu">Base en la literatura: ${e[2]}.</p></div>
+<h3>Posibles consecuencias organizacionales</h3><ul class="cons">${c.map(x=>`<li>${x}</li>`).join("")}</ul>
+<h2>Plan de mejora</h2><div class="cd plan"><p>Área prioritaria: <b>${N[p]}</b> (${s[p]} puntos).</p><ul>${pl.map(x=>`<li>${x}</li>`).join("")}</ul><p><b>Para reflexionar:</b> ${RF[p]}</p></div></div></div>
+<details><summary>Resumen para copiar</summary><textarea id="tx" readonly>${sum}</textarea><div class="row"><button class="bt g" data-a="cp">Copiar resumen</button></div></details>
+<details><summary>Glosario</summary><div class="ov"><table><tr><th>Estilo</th><th>Clasificación</th></tr>
+<tr><td>Transformacional, de servicio, auténtico, ético, inclusivo</td><td>Constructivo</td></tr><tr><td>Transaccional</td><td>Neutro o limitado</td></tr><tr><td>Supervisión abusiva, tiránico</td><td>Destructivo (activo)</td></tr><tr><td>Laissez-faire</td><td>Destructivo (pasivo, debatido)</td></tr><tr><td>Autocrático</td><td>Depende del contexto</td></tr></table></div><p class="mu">Clasificación según el marco teórico del TFM, a partir de Einarsen et al. (2007), Skogstad et al. (2007) y Tepper (2000).</p>
+<ul><li><b>Liderazgo constructivo o destructivo:</b> se clasifica según si favorece a la organización y al bienestar de las personas (Einarsen et al., 2007).</li>
+<li><b>Bienestar psicológico:</b> en este trabajo se entiende como el funcionamiento y la salud psicológica de la persona en su trabajo. La literatura lo aborda con indicadores positivos, como el engagement y la satisfacción laboral, y negativos, como el burnout y el estrés (Cortés-Denia et al., 2023; Mahon, 2024; Pletzer y Breevaart, 2024; Sainz et al., 2021).</li>
+<li><b>Clima laboral:</b> en este trabajo se entiende como la percepción compartida del entorno de trabajo (comunicación, relaciones, reconocimiento y normas). En la literatura aparece como resultado y como mecanismo del liderazgo (Hidayati et al., 2022) y se vincula con la seguridad psicológica (Fajardo Castro et al., 2025).</li>
+<li><b>Desempeño laboral:</b> en este trabajo se entiende como el grado en que se cumplen las tareas del puesto y se contribuye a la organización. La literatura lo amplía al desempeño adaptativo (Bonini et al., 2024) y a la eficacia del equipo (Mazzetti y Schaufeli, 2022), y distingue conductas contraproducentes (Tepper, 2000).</li><li><b>Seguridad psicológica:</b> creencia compartida por los miembros de un equipo de que este es un entorno seguro para asumir riesgos interpersonales (Edmondson, 1999).</li><li><b>Absentismo:</b> en la literatura revisada se aborda sobre todo como ausencia por enfermedad, con frecuencia medida con registros (Løkke, 2022; Stengård et al., 2021).</li><li><b>Presentismo:</b> acudir al trabajo pese a tener molestias o problemas de salud que aconsejarían descansar (Aronsson y Gustafson, 2005, citado en George et al., 2017).</li><li><b>Intención de rotación:</b> propósito de abandonar la organización, que no equivale a la salida efectiva; es la forma en que suele estudiarse la rotación en la literatura revisada (Samad et al., 2022).</li></ul>
+</details><details><summary>Referencias</summary><ul class="rf"><li>Bonini, A., Panari, C., Caricati, L., y Mariani, M. G. (2024). The relationship between leadership and adaptive performance: A systematic review and meta-analysis. <em>PLOS ONE, 19</em>(10), Article e0304720. https://doi.org/10.1371/journal.pone.0304720</li><li>Cortés-Denia, D., Luque-Reca, O., Lopez-Zafra, E., y Pulido-Martos, M. (2023). Does authentic leadership promote higher job satisfaction in public versus private organizations? Exploring the role of vigor and engagement. <em>Heliyon, 9</em>(1), Article e12906. https://doi.org/10.1016/j.heliyon.2023.e12906</li><li>Dannheim, I., Ludwig-Walz, H., Buyken, A. E., Grimm, V., y Kroke, A. (2021). Effectiveness of health-oriented leadership interventions for improving health and wellbeing of employees: A systematic review. <em>Journal of Public Health, 30</em>(12), 2777-2789. https://doi.org/10.1007/s10389-021-01664-1</li><li>Edmondson, A. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly, 44</em>(2), 350-383. https://doi.org/10.2307/2666999</li><li>Einarsen, S., Aasland, M. S., y Skogstad, A. (2007). Destructive leadership behaviour: A definition and conceptual model. <em>The Leadership Quarterly, 18</em>(3), 207-216. https://doi.org/10.1016/j.leaqua.2007.03.002</li><li>Fajardo Castro, L. V., Camargo Escobar, I. M., Manrique Torres, A. M., Rincón, D. L., Jiménez Carranza, C. C., y Aguilar Bustamante, M. C. (2025). Liderazgo transformacional, clima organizacional y el papel mediador de la seguridad psicológica. <em>Acta Colombiana de Psicología, 28</em>, 1-23. https://doi.org/10.14718/ACP.2025.28.14</li><li>George, R., Chiba, M., y Scheepers, C. B. (2017). An investigation into the effect of leadership style on stress-related presenteeism in South African knowledge workers. <em>SA Journal of Human Resource Management, 15</em>, Article a754. https://doi.org/10.4102/sajhrm.v15i0.754</li><li>Gutiérrez, O. I., Polo, J. D., Zambrano, M. J., y Molina, D. C. (2020). Meta-analysis and scientific mapping of well-being and job performance. <em>The Spanish Journal of Psychology, 23</em>, Article e40.</li><li>Hidayati, T., Ilmi, Z., y Kasuma, J. (2022). How authentic leadership promotes job performance? The mediating role of organizational climate. <em>International Journal of Sustainable Development and Planning, 17</em>(5), 1431-1440.</li><li>Li, P., Yin, K., Shi, J., Damen, T. G. E., y Taris, T. W. (2024). Are bad leaders indeed bad for employees? A meta-analysis of longitudinal studies between destructive leadership and employee outcomes. <em>Journal of Business Ethics, 191</em>, 399-413. https://doi.org/10.1007/s10551-023-05449-2</li><li>Lindert, L., Zeike, S., Choi, K.-E. A., y Pfaff, H. (2023). Transformational leadership and employees' psychological wellbeing: A longitudinal study. <em>International Journal of Environmental Research and Public Health, 20</em>(1), Article 676. https://doi.org/10.3390/ijerph20010676</li><li>Løkke, A.-K. (2022). Leadership and its influence on employee absenteeism: A qualitative review. <em>Management Decision, 60</em>(11), 2990-3018. https://doi.org/10.1108/MD-05-2021-0693</li><li>Mahon, D. (2024). Systematic review of servant leadership and burnout. <em>Mental Health and Social Inclusion, 28</em>(4), 326-344. https://doi.org/10.1108/MHSI-02-2024-0027</li><li>Mathieu, C., y Gilbreath, B. (2025). The harmful side of absent leaders: Multifactor leadership and employees' job-stress-related presenteeism. <em>Journal of Management & Organization, 31</em>(1), 233-255. https://doi.org/10.1017/jmo.2024.56</li><li>Mazzetti, G., y Schaufeli, W. B. (2022). The impact of engaging leadership on employee engagement and team effectiveness: A longitudinal, multi-level study on the mediating role of personal- and team resources. <em>PLoS ONE, 17</em>(6), Article e0269433. https://doi.org/10.1371/journal.pone.0269433</li><li>Montano, D., Schleu, J. E., y Hüffmeier, J. (2023). A meta-analysis of the relative contribution of leadership styles to followers' mental health. <em>Journal of Leadership & Organizational Studies, 30</em>(1), 90-107. https://doi.org/10.1177/15480518221114854</li><li>Obeng, A. F., Zhu, Y., Azinga, S. A., y Quansah, P. E. (2021). Organizational climate and job performance: Investigating the mediating role of harmonious work passion and the moderating role of leader-member exchange and coaching. <em>SAGE Open, 11</em>(2). https://doi.org/10.1177/21582440211008456</li><li>Pletzer, J. L., y Breevaart, K. (2024). Constructive and destructive leadership in job demands-resources theory: A meta-analytic test of the motivational and health-impairment pathways. <em>Organizational Psychology Review, 14</em>, 131-165. https://doi.org/10.1177/20413866231197519</li><li>Sainz, M., Delgado, N., y Moriano, J. A. (2021). The link between authentic leadership, organizational dehumanization and stress at work. <em>Journal of Work and Organizational Psychology, 37</em>(2), 85-92. https://doi.org/10.5093/jwop2021a9</li><li>Samad, A., Muchiri, M., y Shahid, S. (2022). Investigating leadership and employee well-being in higher education. <em>Personnel Review, 51</em>(1), 57-76. https://doi.org/10.1108/PR-05-2020-0340</li><li>Skogstad, A., Einarsen, S., Torsheim, T., Aasland, M. S., y Hetland, H. (2007). The destructiveness of laissez-faire leadership behavior. <em>Journal of Occupational Health Psychology, 12</em>(1), 80-92. https://doi.org/10.1037/1076-8998.12.1.80</li><li>Stengård, J., Peristera, P., Johansson, G., y Nyberg, A. (2021). The role of managerial leadership in sickness absence in health and social care: Antecedent or moderator in the association between psychosocial working conditions and register-based sickness absence? A longitudinal study based on a Swedish cohort. <em>BMC Public Health, 21</em>, Article 2215. https://doi.org/10.1186/s12889-021-12236-z</li><li>Tepper, B. J. (2000). Consequences of abusive supervision. <em>Academy of Management Journal, 43</em>(2), 178-190. https://doi.org/10.5465/1556375</li><li>Tummers, L. G., y Bakker, A. B. (2021). Leadership and job demands-resources theory: A systematic review. <em>Frontiers in Psychology, 12</em>, Article 722080. https://doi.org/10.3389/fpsyg.2021.722080</li></ul></details>
+<h2>Limitaciones</h2><div class="cd lim"><ul><li><b>Es parte de un trabajo académico.</b> Este recurso se desarrolló como producto de un Trabajo Fin de Máster (TFM), con fines formativos y de investigación. No es un servicio profesional ni un producto comercial.</li><li><b>No está validado.</b> Los 20 ítems son de elaboración propia y no se han probado con una muestra real. Los niveles (bajo, medio y alto) son orientativos y no tienen baremo.</li><li><b>Se basa en tu percepción.</b> Tus respuestas reflejan cómo ves tu situación en este momento y pueden cambiar con el tiempo y el contexto.</li><li><b>Los escenarios son expectativas, no resultados.</b> Se derivan de la literatura revisada y no predicen lo que ocurrirá en tu caso. La propia evidencia tiene límites: es limitada sobre cómo intervenir (Dannheim et al., 2021) y no existe una explicación única de la relación entre bienestar y desempeño (Gutiérrez et al., 2020).</li><li><b>No es un diagnóstico clínico.</b> Si percibes un malestar importante, acude a un profesional.</li></ul></div>
+<div class="row cta"><button class="bt" data-a="rs">Repetir el cuestionario</button></div>`}
+const SV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
+const IC=[SV+'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>',SV+'<circle cx="12" cy="7" r="3.2"/><path d="M6.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="4.5" cy="10.5" r="2.2"/><circle cx="19.5" cy="10.5" r="2.2"/><path d="M1.5 19c0-2.2 1.3-3.8 3-4.2M22.5 19c0-2.2-1.3-3.8-3-4.2"/></svg>'];
+const GI=[SV+'<path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A13 13 0 0 1 22 2c0 2.7-.8 7.5-6 11a22 22 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg>',
+SV+'<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>',
+SV+'<circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1"/><path d="M16 3.1a4 4 0 0 1 0 7.8M22 21v-1a6 6 0 0 0-4-5.6"/></svg>',
+SV+'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>'];
+const NI=[SV+'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',SV+'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>',SV+'<path d="M20 6 9 17l-5-5"/></svg>'];
+function nav(){const it=["¿Cómo funciona?",...N,"Tus resultados"];$("#nav").innerHTML=it.map((t,i)=>`<li class="${i==S.step?"on":i<S.step?"ok":""}"><span class="n">${i<S.step?NI[2]:i==0?NI[0]:i==5?NI[1]:i}</span><span class="t">${t}</span></li>`).join("")}
+function radar(s,l,p){const C=280,M=240,R=140,A=[0,90,180,270],
+po=(a,r)=>(C+r*Math.sin(a*Math.PI/180)).toFixed(1)+","+(M-r*Math.cos(a*Math.PI/180)).toFixed(1);
+const star=(a,r,w,c1,c2)=>`<path d="M${C},${M}L${po(a,r)}L${po(a-90,w)}Z" fill="${c1}"/><path d="M${C},${M}L${po(a,r)}L${po(a+90,w)}Z" fill="${c2}"/>`;
+let tk="";for(let d=0;d<360;d+=5){const m=d%45==0;tk+=`<line class="${m?"tk3":"tk2"}" x1="${po(d,m?150:155).replace(","," \" y1=\"")}" x2="${po(d,m?166:163).replace(","," \" y2=\"")}"/>`}
+const lab=i=>{const w=i%2?N[i].split(" "):[N[i]],k=w.length+1,x=[C,C+186,C,C-186][i],an=["middle","start","middle","end"][i],y=[M-190-(k-1)*22,M-(k-1)*11+6,M+202,M-(k-1)*11+6][i];
+return `<text class="lb" x="${x}" y="${y}" text-anchor="${an}">`+w.map((t,j)=>`<tspan x="${x}" dy="${j?1.2:0}em">${t}</tspan>`).join("")+`<tspan class="lv ${LK[l[i]]}" x="${x}" dy="1.3em">${s[i]}: ${LN[l[i]]}</tspan></text>`};
+return `<svg class="rd" viewBox="0 0 560 480" aria-hidden="true"><defs><radialGradient id="cgN"><stop offset="0" stop-color="#2a5378"/><stop offset=".7" stop-color="#17324d"/><stop offset="1" stop-color="#0f2338"/></radialGradient><linearGradient id="cgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4d58d"/><stop offset="1" stop-color="#c9a13b"/></linearGradient></defs>`
++`<circle cx="${C}" cy="${M}" r="172" fill="url(#cgN)" stroke="url(#cgG)" stroke-width="4"/><circle cx="${C}" cy="${M}" r="150" fill="none" stroke="rgba(42,157,143,.55)" stroke-width="1.5"/>`+tk
++`<g class="st">`+[45,135,225,315].map(a=>star(a,88,11,"#5fc4b8","#2a9d8f")).join("")+A.map(a=>star(a,R,16,"#f4d58d","#c9a13b")).join("")+`</g>`
++`<circle class="th" cx="${C}" cy="${M}" r="${R*18.5/25}"/><circle class="th" cx="${C}" cy="${M}" r="${R*11.5/25}"/>`
++A.map(a=>`<line class="ax" x1="${C}" y1="${M}" x2="${po(a,R).replace(","," \" y2=\"")}"/>`).join("")
++`<polygon class="pl" points="${s.map((v,i)=>po(A[i],R*v/25)).join(" ")}"/>`
++s.map((v,i)=>{const[x,y]=po(A[i],R*v/25).split(",");return `<circle class="pt ${LK[l[i]]}" cx="${x}" cy="${y}" r="7"/>`}).join("")
++`<g class="nd2" style="--rot:${A[p]}deg"><path d="M${C},${M-118}L${C-11},${M}H${C}Z" fill="#f4d58d"/><path d="M${C},${M-118}L${C+11},${M}H${C}Z" fill="#c9a13b"/><path d="M${C},${M+88}L${C-11},${M}H${C}Z" fill="#e2e8f0"/><path d="M${C},${M+88}L${C+11},${M}H${C}Z" fill="#94a3b8"/></g>`
++`<circle cx="${C}" cy="${M}" r="13" fill="#17324d" stroke="url(#cgG)" stroke-width="3"/><circle cx="${C}" cy="${M}" r="4.5" fill="#e9c46a"/>`
++[0,1,2,3].map(lab).join("")+`</svg>`}
+function render(){const a=$("#app");a.innerHTML=S.step==0?intro():S.step<5?blk(S.step-1):res();a.classList.toggle("wide",S.step==5);a.classList.remove("fx");void a.offsetWidth;a.classList.add("fx");nav();window.scrollTo(0,0)}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-a]");if(!t)return;const a=t.dataset.a;
+if(a=="m"){S.m=t.dataset.v;document.querySelectorAll(".md").forEach(x=>{const on=x.dataset.v==S.m;x.classList.toggle("on",on);x.setAttribute("aria-pressed",on)})}
+else if(a=="go"){S.step=1;render()}
+else if(a=="bk"){S.step--;render()}
+else if(a=="nx"){const b=S.step-1;if(S.r.slice(b*5,b*5+5).every(Boolean)){S.step++;render()}else $("#er").textContent="Responde todas las afirmaciones para continuar."}
+else if(a=="rs"){reset();render()}
+else if(a=="cp"){const x=$("#tx");x.select();try{navigator.clipboard.writeText(x.value)}catch(_){}t.textContent="Resumen seleccionado: copia con Ctrl+C si no se copió"}});
+document.addEventListener("change",e=>{const t=e.target;
+if(t.name&&t.name[0]=="q"){S.r[+t.name.slice(1)]=+t.value;const er=$("#er");if(er)er.textContent=""}
+else if(t.id=="mo")S.mo=t.value;else if(t.id=="se")S.se=t.value});
+$("#sbh").innerHTML=logo+"<span>Brújula de Liderazgo</span>";render();
+</script></body></html>
